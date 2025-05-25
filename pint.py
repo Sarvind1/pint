@@ -430,6 +430,23 @@ def show_loading_spinner(text="Loading pin..."):
 def adjust_iframe_dimensions(html, target_width=650):
     """Adjust iframe dimensions while maintaining aspect ratio"""
     try:
+        # Check if we're on mobile (screen width <= 768px)
+        is_mobile = False
+        try:
+            # Get the current viewport width using JavaScript
+            js = """
+            <script>
+                window.mobileCheck = window.innerWidth <= 768;
+            </script>
+            """
+            components.html(js, height=0)
+            is_mobile = True
+        except:
+            pass
+
+        # Set target width based on device
+        target_width = 350 if is_mobile else 650
+
         # Extract original width and height using regex
         width_match = re.search(r'width="(\d+)"', html)
         height_match = re.search(r'height="(\d+)"', html)
