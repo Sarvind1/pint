@@ -281,28 +281,131 @@ st.markdown("""
         }
     }
 
-    @media (max-width: 767px) {
-        .main-container {
-            padding: 1rem 0.5rem;
+    @media (max-width: 768px) {
+        .main .block-container {
+            padding: 1rem 0.5rem !important;
+            margin: 1rem auto !important;
+            border-radius: 15px !important;
         }
-        .content-wrapper {
-            padding: 1.5rem;
-            border-radius: 16px;
-        }
+
         .app-header h1 {
-            font-size: 2rem;
+            font-size: 1.8rem;
         }
+
+        .app-header p {
+            font-size: 1rem;
+        }
+
         .pin-info {
-            padding: 1.5rem;
-            margin: 1rem 0;
+            padding: 1rem;
+            margin: 0.75rem 0;
         }
+
+        .pin-info h3 {
+            font-size: 1.2rem;
+        }
+
+        .pin-info p {
+            font-size: 0.9rem;
+        }
+
+        .stButton>button {
+            height: 2.8em;
+            font-size: 0.95em;
+            margin: 0.25rem 0;
+        }
+
         .nav-buttons {
             flex-direction: column;
             gap: 0.5rem;
+            width: 100%;
         }
+
+        .pin-counter {
+            font-size: 0.9em;
+            padding: 0.5rem 1rem;
+            margin: 0.5rem 0;
+        }
+
+        .stHtml {
+            padding: 0.5rem !important;
+            margin: 0.5rem 0 !important;
+        }
+
+        .stHtml iframe {
+            width: 100% !important;
+            max-width: 100% !important;
+        }
+
+        .loading-container {
+            padding: 1.5rem;
+            margin: 1rem 0;
+        }
+
+        .spinner {
+            width: 40px;
+            height: 40px;
+        }
+
+        .loading-text {
+            font-size: 0.9rem;
+        }
+
+        .info-message {
+            padding: 1.5rem;
+            margin: 0.75rem 0;
+        }
+
+        .tip-message {
+            font-size: 0.85rem;
+            padding: 0.75rem;
+            margin-top: 1rem;
+        }
+
+        .error-message {
+            padding: 0.75rem;
+            margin: 0.75rem 0;
+            font-size: 0.9rem;
+        }
+    }
+
+    /* Additional mobile optimizations */
+    @media (max-width: 480px) {
+        .main .block-container {
+            padding: 0.75rem 0.25rem !important;
+            margin: 0.5rem auto !important;
+        }
+
+        .app-header h1 {
+            font-size: 1.5rem;
+        }
+
         .stButton>button {
-            height: 3em;
-            font-size: 1em;
+            height: 2.5em;
+            font-size: 0.9em;
+        }
+
+        .pin-info {
+            padding: 0.75rem;
+        }
+
+        .pin-info h3 {
+            font-size: 1.1rem;
+        }
+
+        .pin-info p {
+            font-size: 0.85rem;
+        }
+    }
+
+    /* Ensure proper touch targets on mobile */
+    @media (hover: none) {
+        .stButton>button {
+            min-height: 44px; /* Minimum touch target size */
+        }
+
+        .nav-buttons button {
+            padding: 12px 20px;
         }
     }
     </style>
