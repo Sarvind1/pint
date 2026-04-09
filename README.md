@@ -1,36 +1,34 @@
-# Pinterest Pin Viewer
+# Pinterest Embed Viewer
 
-A Streamlit-based web application for browsing and viewing Pinterest pins with an elegant carousel interface. Features responsive design, intelligent caching, and smooth navigation through your curated pin collection.
+A Streamlit web application for browsing and displaying Pinterest pins as embedded iframes. Load pins from a CSV file and view them with responsive, mobile-friendly layouts.
 
 ## Features
 
-- **Interactive Pin Carousel** — Navigate through pins with previous/next controls
-- **Responsive Design** — Automatically adapts layout for mobile and desktop devices
-- **Smart Caching** — Avoids redundant API calls with in-memory pin cache (limit: 15)
-- **Styled Interface** — Clean, modern UI with custom CSS styling
-- **Pinterest oEmbed Integration** — Fetches official pin embeds with automatic dimension adjustment
-- **Pin Counter** — Track your position in the carousel
-- **Error Handling** — Graceful error messages for invalid pins or network issues
+- **Fetch Pinterest Embeds**: Automatically fetch pin embed code using the Pinterest oEmbed API
+- **Responsive Layouts**: Adapts iframe dimensions for desktop and mobile devices while maintaining aspect ratio
+- **Pin Caching**: Caches fetched embeds to reduce API calls and improve performance
+- **CSV-Based Pin List**: Load pins from a CSV file for easy management
+- **Clean UI**: Minimalist design with custom styling, header, pin counter, and navigation controls
 
 ## Tech Stack
 
-- **Streamlit** — Web app framework
-- **Python 3** — Core language
-- **requests** — HTTP client for Pinterest oEmbed API
-- **pandas** — Data manipulation (CSV handling)
+- **Streamlit** - Web app framework
+- **Python 3.7+** - Core language
+- **pandas** - CSV data handling
+- **requests** - HTTP requests for oEmbed API
 
 ## Setup
 
 1. **Clone the repository**
    ```bash
    git clone <repo-url>
-   cd pinterest-pin-viewer
+   cd pinterest-embed-viewer
    ```
 
-2. **Create and activate a virtual environment**
+2. **Create a virtual environment**
    ```bash
    python3 -m venv .venv
-   source .venv/bin/activate
+   source .venv/bin/activate  # On Windows: .venv\Scripts\activate
    ```
 
 3. **Install dependencies**
@@ -38,30 +36,29 @@ A Streamlit-based web application for browsing and viewing Pinterest pins with a
    pip install -r requirements.txt
    ```
 
-4. **Run the application**
+4. **Prepare your pins CSV** (optional)
+   - Create a `pins.csv` file with your Pinterest pin URLs
+
+5. **Run the app**
    ```bash
    streamlit run pint.py
    ```
 
-The app will open in your browser at `http://localhost:8501`
+The app will open in your browser at `http://localhost:8501`.
 
 ## Usage
 
-1. Add Pinterest pin URLs to `pins.csv` in the following format:
-   ```
-   pin_url
-   https://www.pinterest.com/pin/123456789/
-   https://www.pinterest.com/pin/987654321/
-   ```
+1. The app loads pins from `pins.csv` and displays them one at a time
+2. Use navigation buttons (◀ ▶) to browse through pins
+3. The app automatically fetches embed data from Pinterest and adjusts iframe sizes for your device
+4. Hover to see pin titles and descriptions
+5. The app caches fetches to avoid redundant API calls
 
-2. Use the carousel navigation buttons to browse through pins
-3. The app will automatically fetch and display the pin embeds
-4. Pin dimensions are adjusted responsively based on device type
+## File Structure
 
-## Dependencies
-
-- `streamlit` — Web framework
-- `requests` — API requests
-- `pandas` — CSV data handling
-
-See `requirements.txt` for exact versions.
+- `pint.py` - Main Streamlit application
+- `src/utils/pin_utils.py` - Utilities for iframe handling and device detection
+- `src/styles/styles.py` - Custom CSS styling
+- `src/components/ui_components.py` - Reusable UI components
+- `pins.csv` - Your Pinterest pin URLs (ignored in git)
+- `requirements.txt` - Python dependencies
