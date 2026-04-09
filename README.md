@@ -1,147 +1,74 @@
 # Pinterest Embed Viewer
 
-A Streamlit application that displays Pinterest pins in a carousel format with a clean, mobile-first interface.
-
-## Project Structure
-
-```
-Pinterest/
-├── pint.py          # Main application file
-├── pins.csv         # CSV file containing pin data
-└── README.md        # Project documentation
-```
+A Streamlit application for browsing and displaying Pinterest pins in an interactive carousel viewer. Fetch pins from Pinterest's oEmbed API, cache them for performance, and view them with responsive design optimized for both mobile and desktop.
 
 ## Features
 
-1. **Pin Display**
-   - Responsive Pinterest pin embeds
-   - Mobile-first design
-   - Centered layout with clean UI
-   - Loading states and error handling
+- **Pin Carousel**: Navigate through pins with intuitive prev/next controls
+- **Embed Caching**: Intelligent caching (max 15 pins) for faster loading
+- **Responsive Design**: Auto-adjusts iframe dimensions for mobile and desktop viewing
+- **Dimension Extraction**: Automatically extracts and preserves pin aspect ratios
+- **Clean UI**: Custom-styled interface with minimal distractions
+- **Pin Counter**: Track your position in the carousel
 
-2. **Navigation**
-   - Previous/Next navigation buttons
-   - Pin counter display
-   - Smooth transitions between pins
-   - Background preloading of next pins
+## Tech Stack
 
-3. **Data Management**
-   - CSV-based pin data storage
-   - Pin caching for better performance
-   - Error handling and recovery
-
-## CSV Structure
-
-The `pins.csv` file should contain the following columns:
-- `url`: Pinterest pin URL
-- `title`: Pin title
-- `description`: Pin description
-
-## Technical Implementation
-
-### Core Components
-
-1. **State Management**
-   ```python
-   - pin_cache: Caches pin data for better performance
-   - carousel_index: Tracks current pin position
-   - loading: Manages loading states
-   ```
-
-2. **Key Functions**
-   ```python
-   - fetch_pin_embed(): Retrieves pin data from Pinterest API
-   - preload_pins(): Background loading of next pins
-   - navigate_pin(): Handles pin navigation
-   - show_loading_spinner(): Displays loading state
-   ```
-
-3. **UI Components**
-   ```python
-   - Content Container: Centers all content
-   - Navigation Buttons: Previous/Next controls
-   - Pin Counter: Shows current position
-   - Loading Spinner: Visual feedback during loading
-   ```
-
-### Styling
-
-The application uses custom CSS for:
-- Responsive layout
-- Mobile-first design
-- Loading animations
-- Error states
-- Button interactions
-- Centered content
-
-## Usage
-
-1. Prepare your `pins.csv` file with the required columns
-2. Run the application:
-   ```bash
-   streamlit run pint.py
-   ```
-
-## Error Handling
-
-The application includes:
-- API request timeout handling
-- Pin loading error recovery
-- Skip functionality for failed pins
-- User-friendly error messages
-
-## Performance Optimizations
-
-1. **Caching**
-   - Pin data caching
-   - Cache size management
-   - Background preloading
-
-2. **Loading States**
-   - Visual feedback during transitions
-   - Smooth navigation
-   - Error recovery options
-
-## Dependencies
-
-- streamlit
-- pandas
-- requests
-- collections (OrderedDict)
-
-## Future Improvements
-
-1. **Potential Enhancements**
-   - Pin search functionality
-   - Custom categories
-   - Pin sharing options
-   - Analytics tracking
-
-2. **Technical Improvements**
-   - Enhanced error handling
-   - Performance optimizations
-   - Additional caching strategies
+- **Streamlit** - Web application framework
+- **Pandas** - Data handling (CSV loading)
+- **Requests** - HTTP client for oEmbed API
+- **Python 3.8+**
 
 ## Setup
 
-1. Install dependencies:
+1. Clone the repository and navigate to it:
+   ```bash
+   cd pinterest-embed-viewer
+   ```
+
+2. Create and activate a virtual environment:
+   ```bash
+   python3 -m venv .venv
+   source .venv/bin/activate
+   ```
+
+3. Install dependencies:
    ```bash
    pip install -r requirements.txt
    ```
 
-2. (Optional) Edit or replace `pins.csv` with your own Pinterest pins. The CSV should have columns: `url`, `title`, `description`.
+## Usage
 
-3. Run the app:
+1. Prepare a CSV file (`pins.csv`) with Pinterest pin URLs:
+   ```
+   pin_url
+   https://www.pinterest.com/pin/123456789/
+   https://www.pinterest.com/pin/987654321/
+   ```
+
+2. Run the Streamlit app:
    ```bash
    streamlit run pint.py
    ```
 
-4. Open the provided local URL in your browser.
+3. Open your browser to the local Streamlit URL (typically `http://localhost:8501`) and navigate through pins using the arrow buttons.
 
-## Example `pins.csv`
+## Project Structure
+
 ```
-url,title,description
-https://www.pinterest.com/pin/99360735500167749/,Beautiful Nature,Stunning view of a mountain landscape
-https://www.pinterest.com/pin/99360735500167750/,Creative Workspace,Modern and creative office setup
-https://www.pinterest.com/pin/99360735500167751/,Delicious Food,Appetizing plate of pasta
-``` 
+.
+├── pint.py                      # Main Streamlit application
+├── pins.csv                     # Pin URLs (data file)
+├── requirements.txt             # Python dependencies
+├── src/
+│   ├── components/ui_components.py   # Reusable UI components
+│   ├── styles/styles.py              # Custom CSS styling
+│   └── utils/pin_utils.py            # Utility functions for pin handling
+└── README.md
+```
+
+## Requirements
+
+See `requirements.txt` for the complete list. Key dependencies:
+- streamlit
+- requests
+- pandas
